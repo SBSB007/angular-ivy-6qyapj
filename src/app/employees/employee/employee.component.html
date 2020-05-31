@@ -1,0 +1,55 @@
+<form [formGroup]="service.form" class="normal-form" (ngSubmit)="onSubmit()">
+	<mat-grid-list cols="2">
+		<mat-grid-tile>
+			<div class="control-container">
+				<input type="hidden" formControlName="$key">
+				<mat-form-field>
+					<input matInput formControlName="firstName" placeholder="Firstname">
+          <mat-error *ngIf="f.firstName.touched"> First Name is required</mat-error>
+        </mat-form-field>
+				<mat-form-field>
+					<input matInput formControlName="email" placeholder="Email">
+            <mat-error>Email is required/Enter valid Email-Id</mat-error>
+        </mat-form-field>
+				<mat-form-field>
+					<input matInput formControlName="mobile" placeholder="Mobile No.">
+           <mat-error>Mobile No. is required</mat-error>
+        </mat-form-field>
+				<mat-form-field>
+					<input matInput formControlName="city" placeholder="City">
+            <mat-error>City is required</mat-error>
+        </mat-form-field>
+			</div>
+		</mat-grid-tile>
+		<mat-grid-tile>
+			<div class="control-container">
+				<h4>Select an option:</h4>
+				<mat-radio-group aria-label="Select an option" formControlName='gender'>
+					<mat-radio-button value="1">Male</mat-radio-button>
+					<mat-radio-button value="2">Female</mat-radio-button>
+					<mat-radio-button value="3">Other</mat-radio-button>
+				</mat-radio-group>
+				<h4>Basic mat-select</h4>
+				<mat-form-field>
+					<mat-label>Favorite food</mat-label>
+					<mat-select formControlName='department'>
+						<mat-option [value]="1"> 1 </mat-option>
+					</mat-select>
+				</mat-form-field>
+				<mat-form-field>
+					<mat-label>Choose a date</mat-label>
+					<input matInput [matDatepicker]="picker" formControlName='hiredate'>
+					<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+					<mat-datepicker #picker></mat-datepicker>
+				</mat-form-field>
+				<div class="add-bottom-padding">
+					<mat-checkbox formControlName='ispermanent'>Permanent Member</mat-checkbox>
+				</div>
+				<div class="button-row">
+					<button mat-raised-button color="primary" type="submit" [disabled]="!service.form.valid">Submit</button>
+					<button mat-raised-button color="warn" (click)="ClearForm()">Clear</button>
+				</div>
+			</div>
+		</mat-grid-tile>
+	</mat-grid-list>
+</form>
